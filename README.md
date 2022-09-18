@@ -48,6 +48,18 @@ Em seguida, foi realizado a permutação dos itens comuns de 1 a N, com N defini
 Por fim, foi armazenenado todas as permutações de uma entrada em T em um segundo Vector.
 </p>
 
+# Etapa III
+<p align="justify">
+</p>
+
+# Etapa IV
+<p align="justify">
+</p>
+
+# Etapa V
+<p align="justify">
+</p>
+
 # Compilação e Execução
 
 Os exemplos disponibilizados possuem um arquivo Makefile que realiza todo o procedimento de compilação e execução. Para tanto, temos as seguintes diretrizes de execução:
