@@ -20,6 +20,10 @@ A base D será utilizada para simular a inicialização, fornecendo assim o conc
 Já a base T representará os processos a serem executados, as quais serão coordenadas utilizando um sistema de escalonamento em dois níveis: mecanismo e política. 
 </p>
 
+# Etapa I
+
+# Etapa II
+
 # Compilação e Execução
 
 Os exemplos disponibilizados possuem um arquivo Makefile que realiza todo o procedimento de compilação e execução. Para tanto, temos as seguintes diretrizes de execução:
