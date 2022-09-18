@@ -23,6 +23,21 @@ Já a base T representará os processos a serem executados, as quais serão coor
 </p>
 
 # Etapa I
+<p align="justify">
+Elaboração das tabelas hash para itens e classes. Dado uma linha do arquivo, considere item as colunas de 0 a n - 1. 
+
+Considere a coluna n de cada linha como classe. 
+
+Nessas tabelas é armazenado cada item como chave e seus índices no arquivo como valor. Considere como índice a linha que aquele valor específico aparece. 
+
+Considere também item específico aquele item pertencente a coluna x. 
+
+Logo, para itens de mesmo valor, a indexação foi feita de forma separada, ou seja, se um item aparece na coluna 1 e 3 com valor 23.4, considere como chave da hash (1,23.4) e (3,23.4). 
+
+
+
+
+</p>
 
 # Etapa II
 
