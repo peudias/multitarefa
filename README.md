@@ -22,9 +22,9 @@ A base D será utilizada para simular a inicialização, fornecendo assim o conc
 Já a base T representará os processos a serem executados, as quais serão coordenadas utilizando um sistema de escalonamento em dois níveis: mecanismo e política. 
 </p>
 
-# Etapa I
+# Etapa I - Elaboração das tabelas hash para itens e classes.
 <p align="justify">
-Elaboração das tabelas hash para itens e classes. Dado uma linha do arquivo, considere item as colunas de 0 a n - 1. 
+Dado uma linha do arquivo, considere item as colunas de 0 a n - 1. 
 
 Considere a coluna n de cada linha como classe. 
 
@@ -35,10 +35,8 @@ Considere também item específico aquele item pertencente a coluna x.
 Logo, para itens de mesmo valor, a indexação foi feita de forma separada, ou seja, se um item aparece na coluna 1 e 3 com valor 23.4, considere como chave da hash (1,23.4) e (3,23.4). 
 </p>
 
-# Etapa II
-<p align="justify">
-Nessa etapa foi trabahado o conteúdo de T. 
-  
+# Etapa II - Trabalhando o conteúdo de T.
+<p align="justify">  
 O conteúdo de T foi lido em uma Fila em que cada posição detenha uma linha inteira já tokenizada. 
 
 Depois de carregar todo o conteúdo de T, foi processado linha a linha, ou seja, comparando os itens de T com a tabela hash de itens, selecionando apenas os itens em comum.
