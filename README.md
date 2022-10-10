@@ -12,29 +12,30 @@ Neste projeto será construído um sistema de classificação cujas característ
 
 Neste sistema, vamos considerar duas bases de dados: `D` e `T`. 
 
-A base `D` será utilizada para simular a inicialização, fornecendo assim o conceito de bootstrapping, tal como no sistema operacional.
+A `base D` será utilizada para **simular a inicialização**, fornecendo assim o conceito de **bootstrapping**, tal como no sistema operacional.
 
-Já a base `T` representará os processos a serem executados, as quais serão coordenadas utilizando um sistema de escalonamento em dois níveis: mecanismo e política. 
+Já a `base T` representará os **processos a serem executados**, as quais serão coordenadas utilizando um sistema de **escalonamento em dois níveis: mecanismo e política**. 
 
 </p>
 
-## Etapa I - Elaboração das tabelas hash para itens e classes.
+## Etapa I - Trabalhando o conteúdo de D 
+### Elaboração das tabelas hash para itens e classes.
 
 <p align="justify">
 
-Dado uma linha do arquivo, considere item as colunas de 0 a n - 1. 
+Dado uma linha do arquivo, **considere `item` as `colunas` de `0` a `n - 1`**. 
 
-Considere a coluna n de cada linha como classe. 
+Considere a **`coluna n`** de **cada linha como `classe`**. 
 
-Nessas tabelas é armazenado cada item como chave e seus índices no arquivo como valor. Considere como índice a linha que aquele valor específico aparece. 
+Nessas tabelas são armazenados **`cada item` como `chave`** e seus **`índices no arquivo` como `valor`**. Considere como índice a linha que aquele valor específico aparece. 
 
-Considere também item específico aquele item pertencente a coluna x. 
+Considere também **item específico** aquele item **pertencente a coluna x**. 
 
-Logo, para itens de mesmo valor, a indexação foi feita de forma separada, ou seja, se um item aparece na coluna 1 e 3 com valor 23.4, considere como chave da hash (1,23.4) e (3,23.4). 
+Logo, para itens de mesmo valor, a indexação foi feita de forma separada, ou seja, **se um item aparece na coluna 1 e 3 com valor 23.4, considere como chave da hash `(1,23.4)` e `(3,23.4)`**. 
 
 </p>
 
-## Etapa II - Trabalhando o conteúdo de T.
+## Etapa II - Trabalhando o conteúdo de T
 
 <p align="justify">  
 
@@ -52,6 +53,12 @@ Por fim, foi armazenenado todas as permutações de uma entrada em T em um segun
 
 <p align="justify">
 
+Para cada permutação encontrada, foi buscado individualmente os valores dos itens em hash, executando em seguida uma interseção desses valores.
+
+Se a interseção for não nula, será aplicada essa na hash de todas as classes. 
+  
+A classe que apresentar um valor de sobreposição maior após processar todas as permutações será apresentada como classe da tarefa em T.
+  
 </p>
 
 ## Etapa IV
