@@ -69,6 +69,11 @@ Os exemplos disponibilizados possuem um arquivo Makefile que realiza todo o proc
 |  `make`                | Executa a compilação do programa utilizando o gcc, e o resultado vai para a pasta build           |
 |  `make run`            | Executa o programa da pasta build após a realização da compilação                                 |
 
+OU
+| Comando                |  Função                                                                                           |                     
+| -----------------------| ------------------------------------------------------------------------------------------------- |
+|  `make r`              | Executa o `make clean` + `make` + `make run`                                                      |
+
 
 # Contatos
 
