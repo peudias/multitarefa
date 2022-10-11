@@ -39,7 +39,7 @@ void menu(){
             etapaII(&mapa_d);
             break;
 
-		case 3:
+	case 3:
             system("clear");
             break;
 
