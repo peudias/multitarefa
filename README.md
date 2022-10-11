@@ -39,13 +39,13 @@ Logo, para itens de mesmo valor, a indexação foi feita de forma separada, ou s
 
 <p align="justify">  
 
-O conteúdo de T foi lido em uma Fila em que cada posição detenha uma linha inteira já tokenizada. 
+O **`conteúdo de T`** foi **lido em uma Fila** em que **cada posição detenha uma linha inteira já tokenizada**. 
 
-Depois de carregar todo o conteúdo de T, foi processado linha a linha, ou seja, comparando os itens de T com a tabela hash de itens, selecionando apenas os itens em comum.
+Depois de carregar todo o conteúdo de T, **foi processado linha a linha**, ou seja, **comparando os itens de T com a tabela hash de itens**, **selecionando apenas os itens em comum**.
   
-Em seguida, foi realizado a permutação dos itens comuns de 1 a N, com N definido estaticamente com define diretamente no código. 
+Em seguida, foi realizado a **permutação dos itens comuns de 1 a N**, com **N definido estaticamente** com define diretamente no código. 
 
-Por fim, foi armazenenado todas as permutações de uma entrada em T em um segundo Vector.
+Por fim, foi **armazenenado todas as permutações** de uma entrada em T em um **segundo Vector**.
 
 </p>
 
