@@ -53,11 +53,11 @@ Por fim, foi **armazenenado todas as permutações** de uma entrada em T em um *
 
 <p align="justify">
 
-Para cada permutação encontrada, foi buscado individualmente os valores dos itens em hash, executando em seguida uma interseção desses valores.
+Para cada **permutação** encontrada, foi **buscado individualmente** os valores dos **itens em hash**, executando em seguida uma **interseção desses valores**.
 
-Se a interseção for não nula, será aplicada essa na hash de todas as classes. 
+Se a **`interseção`** for **`não nula`**, **será aplicada essa na hash de todas as classes**. 
   
-A classe que apresentar um valor de sobreposição maior após processar todas as permutações será apresentada como classe da tarefa em T.
+A **classe** que apresentar um valor de **sobreposição maior** após processar todas as permutações **será apresentada** como **classe da tarefa em T**.
   
 </p>
 
