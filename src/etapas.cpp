@@ -42,15 +42,15 @@ void menu(){
             break;
 
 	case 3:
+	    etapaI(&mapa_d);
+	    etapaII(&mapa_d);
             system("clear");
             cout << endl << "Etapa III: " << endl;
 	    etapaIII(&mapa_d, &mapa_t_reduzido_permutacao);
 	    break;
 
         case 0:
-	    etapaI(&mapa_d);
-	    etapaII(&mapa_d);
-            system("clear");
+	    system("clear");
             sair = 1;
             break;
 
