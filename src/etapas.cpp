@@ -3,8 +3,9 @@
 
 void menu(){
     int opcao, sair = 0;
-
+	
     unordered_map<string, vector<int>> mapa_d;
+	unordered_map<int, vector<string>> mapa_t_reduzido_permutacao;
 
     while(sair != 1){
         
@@ -34,6 +35,7 @@ void menu(){
             break;
 
         case 2:
+			etapaI(&mapa_d);
             system("clear");
             cout << endl << "Etapa II: " << endl;
             etapaII(&mapa_d);
@@ -41,9 +43,13 @@ void menu(){
 
 		case 3:
             system("clear");
-            break;
+            cout << endl << "Etapa III: " << endl;
+			etapaIII(&mapa_d, &mapa_t_reduzido_permutacao);
+			break;
 
         case 0:
+			etapaI(&mapa_d);
+			etapaII(&mapa_d);
             system("clear");
             sair = 1;
             break;
@@ -147,7 +153,7 @@ void etapaII(unordered_map<string, vector<int>> *mapa_d){
 	unordered_map<string, vector<int>>::iterator it_d;
 
 	vector<string> v2;
-
+	
 	for(it=mapa_t.begin(); it != mapa_t.end(); ++it){
 		v2.clear();
 		for(auto coluna:it->second){
@@ -160,7 +166,23 @@ void etapaII(unordered_map<string, vector<int>> *mapa_d){
 	}
 	
 	for(it=mapa_t_reduzido.begin(); it != mapa_t_reduzido.end(); ++it){
+		cout << it->first << endl << "-> ";
+		for(auto coluna:it->second){
+			cout << coluna << " ";
+		}
+		cout << endl;
+	}
+
+	for(it=mapa_t_reduzido.begin(); it != mapa_t_reduzido.end(); ++it){
 		permutacao(&mapa_t_reduzido_permutacao, it->second, it->first);
+	}
+
+	for(it=mapa_t_reduzido_permutacao.begin(); it != mapa_t_reduzido_permutacao.end(); ++it){
+		cout << it->first << endl << "-> ";
+		for(auto coluna:it->second){
+			cout << coluna << endl;
+		}
+		cout << endl;
 	}
 
 	etapaIII(mapa_d, &mapa_t_reduzido_permutacao);
