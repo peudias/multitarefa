@@ -96,19 +96,21 @@ ou
 # Contatos
 
 <div style="display: inline-block;">
-<a href="https://t.me/phpdias">
-<img align="center" height="20px" width="90px" src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> 
+
+<a href="https://t.me/phpdias" target="_blank">
+  <img align="center" src="https://img.shields.io/badge/-phpdias-05122A?style=flat&logo=telegram" alt="linkedin"/>
+</a>
+  
+<a href="https://linkedin.com/in/phpd" target="_blank">
+  <img align="center" src="https://img.shields.io/badge/-phpd-05122A?style=flat&logo=linkedin" alt="linkedin"/>
 </a>
 
-<a href="https://www.linkedin.com/in/phpd/">
-<img align="center" height="20px" width="90px" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
+<a style="color:black" href="mailto:phpdias@outlook.com?subject=[GitHub]%20Source%20Dynamic%20Lists">
+ <img align="center" src="https://img.shields.io/badge/-phpdias@outlook.com-05122A?style=flat&logo=email" alt="linkedin"/>
 </a>
 
 </div>
 
-<p> </p>
 
 
-<a style="color:black" href="mailto:michel@cefetmg.br?subject=[GitHub]%20Source%20Dynamic%20Lists">
-✉️ <i>phpdias@outlook.com</i>
-</a>
+
