@@ -5,7 +5,7 @@ void menu(){
     int opcao, sair = 0;
 	
     unordered_map<string, vector<int>> mapa_d;
-	unordered_map<int, vector<string>> mapa_t_reduzido_permutacao;
+    unordered_map<int, vector<string>> mapa_t_reduzido_permutacao;
 
     while(sair != 1){
         
@@ -35,21 +35,21 @@ void menu(){
             break;
 
         case 2:
-			etapaI(&mapa_d);
+	    etapaI(&mapa_d);
             system("clear");
             cout << endl << "Etapa II: " << endl;
             etapaII(&mapa_d);
             break;
 
-		case 3:
+	case 3:
             system("clear");
             cout << endl << "Etapa III: " << endl;
-			etapaIII(&mapa_d, &mapa_t_reduzido_permutacao);
-			break;
+	    etapaIII(&mapa_d, &mapa_t_reduzido_permutacao);
+	    break;
 
         case 0:
-			etapaI(&mapa_d);
-			etapaII(&mapa_d);
+	    etapaI(&mapa_d);
+	    etapaII(&mapa_d);
             system("clear");
             sair = 1;
             break;
