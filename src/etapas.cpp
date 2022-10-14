@@ -5,12 +5,12 @@ void menu(){
     int opcao, sair = 0;
 	
     unordered_map<string, vector<int>> mapa_d;
-	unordered_map<string, vector<int>> classe;
+    unordered_map<string, vector<int>> classe;
     unordered_map<int, vector<string>> mapa_t_reduzido_permutacao;
 
     while(sair != 1){
 
-		system("clear");
+	system("clear");
 
         cout << endl;
 
@@ -22,7 +22,7 @@ void menu(){
 
         cout << "1) Etapa I" << endl;
         cout << "2) Etapa II" << endl;
-		cout << "3) Etapa III" << endl;
+	cout << "3) Etapa III" << endl;
         cout << "0) Sair" << endl;
         
         cout << endl;
@@ -32,28 +32,28 @@ void menu(){
 
         switch (opcao){
         case 1:
-            cout << "Etapa I: " << endl;
-            etapaI(&mapa_d, &classe);
+            	cout << "Etapa I: " << endl;
+            	etapaI(&mapa_d, &classe);
             break;
 
         case 2:
 	    	etapaI(&mapa_d, &classe);
-            cout << endl << "Etapa II: " << endl;
-            etapaII(&mapa_d, &classe);
+            	cout << endl << "Etapa II: " << endl;
+            	etapaII(&mapa_d, &classe);
             break;
 
 	case 3:
-	    etapaI(&mapa_d, &classe);
-	    etapaII(&mapa_d, &classe);
-        cout << endl << "Etapa III: " << endl;
-	    etapaIII(&mapa_d, &mapa_t_reduzido_permutacao, &classe);
+		etapaI(&mapa_d, &classe);
+	    	etapaII(&mapa_d, &classe);
+     	    	cout << endl << "Etapa III: " << endl;
+	    	etapaIII(&mapa_d, &mapa_t_reduzido_permutacao, &classe);
 	    break;
 
-    case 0:
-        sair = 1;
-        break;
+    	case 0:
+        	sair = 1;
+            break;
 
-    default:
+    	default:
             break;
         }
 	system("read -p \"\nPressione enter para continuar...\" continue");
