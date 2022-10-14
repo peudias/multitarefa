@@ -7,6 +7,7 @@
 #include <fstream>
 #include <unordered_map>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -23,5 +24,9 @@ void etapaII(unordered_map<string, vector<int>> *mapa_d);
 void etapaIII(unordered_map<string, vector<int>> *mapa_d, unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao);
 
 void permutacao(unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao,vector <string> vaux, int linha);
+
+void split(string split, vector<string> *guardarValorSplit);
+
+void intersecao(vector <int> intersecaoUm, vector <int> intersecaoDois, vector <int> *ResultadoFinal);
 
 #endif
