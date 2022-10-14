@@ -17,9 +17,9 @@ void menu(){
         
         cout << endl; 
 
-        cout << "1) Etapa 1" << endl;
-        cout << "2) Etapa 2" << endl;
-		cout << "3) Etapa 3" << endl;
+        cout << "1) Etapa I" << endl;
+        cout << "2) Etapa II" << endl;
+	cout << "3) Etapa III" << endl;
         cout << "0) Sair" << endl;
         
         cout << endl;
