@@ -39,7 +39,7 @@ void menu(){
             etapaII(&mapa_d);
             break;
 
-	case 3:
+		case 3:
             system("clear");
             break;
 
@@ -158,26 +158,10 @@ void etapaII(unordered_map<string, vector<int>> *mapa_d){
 		}
 		mapa_t_reduzido.insert({it->first, v2});
 	}
-
-	/*for(it=mapa_t_reduzido.begin(); it != mapa_t_reduzido.end(); ++it){
-		cout << it->first << endl << "-> ";
-		for(auto coluna:it->second){
-			cout << coluna << " ";
-		}
-		cout << endl;
-	}*/
 	
 	for(it=mapa_t_reduzido.begin(); it != mapa_t_reduzido.end(); ++it){
 		permutacao(&mapa_t_reduzido_permutacao, it->second, it->first);
 	}
-
-	/*for(it=mapa_t_reduzido_permutacao.begin(); it != mapa_t_reduzido_permutacao.end(); ++it){
-		cout << it->first << endl << "-> ";
-		for(auto coluna:it->second){
-			cout << coluna << endl;
-		}
-		cout << endl;
-	}*/
 
 	etapaIII(mapa_d, &mapa_t_reduzido_permutacao);
 }
@@ -201,7 +185,7 @@ void permutacao(unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao,v
 		it_aux = it_vec;
 		++it_aux;
 		for(it_segundo=it_aux; it_segundo != vaux.end(); ++it_segundo){
-			saux.assign(*it_vec).append(">").append(*it_segundo);
+			saux.assign(*it_vec).append("-").append(*it_segundo);
 			v.push_back(saux);
 		}
 	}
@@ -215,7 +199,7 @@ void permutacao(unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao,v
 			it_aux = it_segundo;
 			++it_aux;
 			for(it_terceiro=it_aux; it_terceiro != vaux.end(); ++it_terceiro){
-				saux.assign(*it_vec).append(">").append(*it_segundo).append(">").append(*it_terceiro);
+				saux.assign(*it_vec).append("-").append(*it_segundo).append("-").append(*it_terceiro);
 				v.push_back(saux);
 			}			
 		}
@@ -225,20 +209,56 @@ void permutacao(unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao,v
 
 void etapaIII(unordered_map<string, vector<int>> *mapa_d, unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao){
 	unordered_map<int, vector<string>>::iterator it;
+	vector<string> guardarValorSplit;
+
+	unordered_map<string, vector<int>>::iterator itMapaD; 
 
 	for(it=mapa_t_reduzido_permutacao->begin(); it != mapa_t_reduzido_permutacao->end(); ++it){
-		cout << it->first << endl << "->";
 		for(auto coluna:it->second){
-			//if(coluna.size() < 3){
-				cout << coluna << " # ";
-			//}
+			guardarValorSplit.clear();
+			split(coluna, &guardarValorSplit);
+			
+			if(guardarValorSplit.size() == 1){
+				itMapaD = mapa_d->find(coluna);
+				if(itMapaD != mapa_d->end()){
+				
+				}
+  			}else{
+				vector<string>::iterator itSplit;
+				vector<int> resultIntersecao;
+				vector<int> aux1;
+				vector<int> aux2;
+				itSplit = guardarValorSplit.begin();
+				aux1 = mapa_d->find(guardarValorSplit.at(0))->second;
+				++itSplit;
+				resultIntersecao.resize(guardarValorSplit.size());
+				
+				while(resultIntersecao.size() > 1){
+					aux2 = mapa_d->find(*itSplit)->second;
+					++itSplit;
+					intersecao(aux1, aux2, &resultIntersecao);
+					aux1.clear();
+					aux2.clear();
+					aux1.assign(resultIntersecao.begin(),resultIntersecao.end());
+					resultIntersecao.clear();
+				}
+			}
 		}
-		cout << endl;
 	}
 }
 
+/**
+ * @brief 
+ * 
+ * @param split 
+ * @param guardarValorSplit 
+ * 
+ * falta pegar o resultado encontrado (coluna ou intersecao) e fazer a intersecao com a classe
+ * pra depois verificar quem é o maior
+ */
+
 void split(string split, vector<string> *guardarValorSplit){
-	char del = '>';
+	char del = '-';
 
 	stringstream str(split);
 	string token;
@@ -248,9 +268,16 @@ void split(string split, vector<string> *guardarValorSplit){
 	int col = 1;
 
 	while (getline(str, token, del)){
-		cout << token << " ";
+		guardarValorSplit->push_back(token);
 	}
+}
 
-	cout << endl;
+void intersecao(vector <int> intersecaoUm, vector <int> intersecaoDois, vector <int> *ResultadoFinal){
+  vector<int>::iterator it;
+  ResultadoFinal->resize(intersecaoUm.size() + intersecaoDois.size());
+  
+  it=set_intersection (intersecaoUm.begin(), intersecaoUm.end(), intersecaoDois.begin(), 
+  intersecaoDois.end(), ResultadoFinal->begin());
 
+  ResultadoFinal->resize(it-ResultadoFinal->begin());
 }
