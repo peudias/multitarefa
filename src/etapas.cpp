@@ -5,10 +5,13 @@ void menu(){
     int opcao, sair = 0;
 	
     unordered_map<string, vector<int>> mapa_d;
+	unordered_map<string, vector<int>> classe;
     unordered_map<int, vector<string>> mapa_t_reduzido_permutacao;
 
     while(sair != 1){
-        
+
+		system("clear");
+
         cout << endl;
 
         cout << "================" << endl;
@@ -19,7 +22,7 @@ void menu(){
 
         cout << "1) Etapa I" << endl;
         cout << "2) Etapa II" << endl;
-	cout << "3) Etapa III" << endl;
+		cout << "3) Etapa III" << endl;
         cout << "0) Sair" << endl;
         
         cout << endl;
@@ -29,38 +32,35 @@ void menu(){
 
         switch (opcao){
         case 1:
-            system("clear");
             cout << "Etapa I: " << endl;
-            etapaI(&mapa_d);
+            etapaI(&mapa_d, &classe);
             break;
 
         case 2:
-	    etapaI(&mapa_d);
-            system("clear");
+	    	etapaI(&mapa_d, &classe);
             cout << endl << "Etapa II: " << endl;
-            etapaII(&mapa_d);
+            etapaII(&mapa_d, &classe);
             break;
 
 	case 3:
-	    etapaI(&mapa_d);
-	    etapaII(&mapa_d);
-            system("clear");
-            cout << endl << "Etapa III: " << endl;
-	    etapaIII(&mapa_d, &mapa_t_reduzido_permutacao);
+	    etapaI(&mapa_d, &classe);
+	    etapaII(&mapa_d, &classe);
+        cout << endl << "Etapa III: " << endl;
+	    etapaIII(&mapa_d, &mapa_t_reduzido_permutacao, &classe);
 	    break;
 
-        case 0:
-	    system("clear");
-            sair = 1;
-            break;
+    case 0:
+        sair = 1;
+        break;
 
-        default:
+    default:
             break;
         }
+	system("read -p \"\nPressione enter para continuar...\" continue");
     }
 }
 
-void tokenizar(string text, unordered_map<string, vector<int>> *mapa, int linha){
+void tokenizar(string text, unordered_map<string, vector<int>> *mapa, int linha, unordered_map<string, vector<int>> *classe){
 	char del = ',';
 
 	stringstream str(text);
@@ -72,16 +72,26 @@ void tokenizar(string text, unordered_map<string, vector<int>> *mapa, int linha)
 
 	while (getline(str, token, del)){
 		if(aux++ < TAM){
-			token.insert(0,to_string(col++).append(","));		
-		}
-		nome = mapa->find(token);
-		if(nome != mapa->end()){
-			nome->second.push_back(linha);
+			token.insert(0,to_string(col++).append(","));	
+			nome = mapa->find(token);
+			if(nome != mapa->end()){
+				nome->second.push_back(linha);
+			}else{
+				v.clear();
+				v.push_back(linha);
+				mapa->insert({token, v});
+			}	
 		}else{
-			v.clear();
-			v.push_back(linha);
-			mapa->insert({token, v});
+			nome = classe->find(token);
+			if(nome != classe->end()){
+				nome->second.push_back(linha);
+			}else{
+				v.clear();
+				v.push_back(linha);
+				classe->insert({token, v});
+			}
 		}
+		//cout << token << endl;
 	}
 }
 
@@ -101,13 +111,14 @@ void tokenizar_etapaII(string text, unordered_map<int, vector<string>> *mapa, in
 		}
 	}
 	mapa->insert({linha, v});
+
 }
 
 void etapaI(unordered_map<string, vector<int>> *mapa_d);
 void etapaII(unordered_map<string, vector<int>> *mapa_d);
 void permutacao(unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao,vector <string> vaux, int linha);
 
-void etapaI(unordered_map<string, vector<int>> *mapa_d){
+void etapaI(unordered_map<string, vector<int>> *mapa_d, unordered_map<string, vector<int>> *classe){
 	string path = "DT/D.csv";
 	int contadorLinha = 1;
 
@@ -116,14 +127,14 @@ void etapaI(unordered_map<string, vector<int>> *mapa_d){
 
 	if (myfile.is_open()) {
 		while (getline(myfile, line)){
-			tokenizar(line, mapa_d, contadorLinha++);
+			tokenizar(line, mapa_d, contadorLinha++, classe);
 		}
 		myfile.close();
 	} else cout << "Nao foi possivel abrir o arquivo" << endl;
 
 	unordered_map<string, vector<int>>::iterator it;
 
-	for(it=mapa_d->begin(); it != mapa_d->end(); ++it){
+	for(it=classe->begin(); it != classe->end(); ++it){
 		cout << it->first << endl << "-> ";
 		for(int coluna:it->second){
 			cout << coluna << " ";
@@ -132,7 +143,7 @@ void etapaI(unordered_map<string, vector<int>> *mapa_d){
 	}
 }
 
-void etapaII(unordered_map<string, vector<int>> *mapa_d){
+void etapaII(unordered_map<string, vector<int>> *mapa_d, unordered_map<string, vector<int>> *classe){
 	string path = "DT/T.csv";
 	unordered_map<int, vector<string>> mapa_t;
 	unordered_map<int, vector<string>> mapa_t_reduzido;
@@ -164,14 +175,15 @@ void etapaII(unordered_map<string, vector<int>> *mapa_d){
 		}
 		mapa_t_reduzido.insert({it->first, v2});
 	}
-	
-	for(it=mapa_t_reduzido.begin(); it != mapa_t_reduzido.end(); ++it){
+
+	//reduzido	
+	/*for(it=mapa_t_reduzido.begin(); it != mapa_t_reduzido.end(); ++it){
 		cout << it->first << endl << "-> ";
 		for(auto coluna:it->second){
 			cout << coluna << " ";
 		}
 		cout << endl;
-	}
+	}*/
 
 	for(it=mapa_t_reduzido.begin(); it != mapa_t_reduzido.end(); ++it){
 		permutacao(&mapa_t_reduzido_permutacao, it->second, it->first);
@@ -185,7 +197,7 @@ void etapaII(unordered_map<string, vector<int>> *mapa_d){
 		cout << endl;
 	}
 
-	etapaIII(mapa_d, &mapa_t_reduzido_permutacao);
+	etapaIII(mapa_d, &mapa_t_reduzido_permutacao, classe);
 }
 
 void permutacao(unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao,vector <string> vaux, int linha){
@@ -229,13 +241,27 @@ void permutacao(unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao,v
 	mapa_t_reduzido_permutacao->insert({linha, v});
 }
 
-void etapaIII(unordered_map<string, vector<int>> *mapa_d, unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao){
+void etapaIII(unordered_map<string, vector<int>> *mapa_d, unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao, unordered_map<string, vector<int>> *classe){
 	unordered_map<int, vector<string>>::iterator it;
 	vector<string> guardarValorSplit;
 
 	unordered_map<string, vector<int>>::iterator itMapaD; 
+	unordered_map<string, int> classeAux;
+	unordered_map<int, unordered_map<string, int>> resultado;
+	unordered_map<int, unordered_map<string, int>>::iterator itResultado;
+	unordered_map<string, int>::iterator itResultado2;
+	vector <int> ResultadoFinal;
+	unordered_map<string, vector<int>>::iterator itClasse;
+
+	for(itMapaD = classe->begin(); itMapaD != classe->end(); ++itMapaD){
+		classeAux.insert({itMapaD->first, 0});
+	}
 
 	for(it=mapa_t_reduzido_permutacao->begin(); it != mapa_t_reduzido_permutacao->end(); ++it){
+		resultado.insert({it->first, classeAux});
+		itResultado = resultado.find(it->first);
+		ResultadoFinal.clear();
+
 		for(auto coluna:it->second){
 			guardarValorSplit.clear();
 			split(coluna, &guardarValorSplit);
@@ -243,7 +269,12 @@ void etapaIII(unordered_map<string, vector<int>> *mapa_d, unordered_map<int, vec
 			if(guardarValorSplit.size() == 1){
 				itMapaD = mapa_d->find(coluna);
 				if(itMapaD != mapa_d->end()){
-				
+					
+					for(itClasse=classe->begin(); itClasse != classe->end(); ++itClasse){
+						intersecao(itMapaD->second, itClasse->second, &ResultadoFinal);
+						itResultado2 = itResultado->second.find(itClasse->first);
+						itResultado2->second += ResultadoFinal.size();
+					}
 				}
   			}else{
 				vector<string>::iterator itSplit;
@@ -258,26 +289,45 @@ void etapaIII(unordered_map<string, vector<int>> *mapa_d, unordered_map<int, vec
 				while(resultIntersecao.size() > 1){
 					aux2 = mapa_d->find(*itSplit)->second;
 					++itSplit;
-					intersecao(aux1, aux2, &resultIntersecao);
 					aux1.clear();
 					aux2.clear();
-					aux1.assign(resultIntersecao.begin(),resultIntersecao.end());
 					resultIntersecao.clear();
+					intersecao(aux1, aux2, &resultIntersecao);
+					aux1.assign(resultIntersecao.begin(),resultIntersecao.end());
+				}
+				if(resultIntersecao.size() > 0){
+					itMapaD = mapa_d->find(coluna);
+					if(itMapaD != mapa_d->end()){
+						unordered_map<string, vector<int>>::iterator itClasse;
+					
+						for(itClasse=classe->begin(); itClasse != classe->end(); ++itClasse){
+							intersecao(itMapaD->second, itClasse->second, &ResultadoFinal);
+							itResultado2 = itResultado->second.find(itClasse->first);
+							itResultado2->second += ResultadoFinal.size();
+						}
+					}
 				}
 			}
 		}
 	}
-}
 
-/**
- * @brief 
- * 
- * @param split 
- * @param guardarValorSplit 
- * 
- * falta pegar o resultado encontrado (coluna ou intersecao) e fazer a intersecao com a classe
- * pra depois verificar quem é o maior
- */
+	string guardarClasse;
+
+	for(itResultado = resultado.begin(); itResultado != resultado.end(); ++itResultado){
+		cout << itResultado->first << endl;
+		int quemMaior = -1;
+		for(itResultado2 = itResultado->second.begin(); itResultado2 != itResultado->second.end(); ++itResultado2){
+			if(itResultado2->second > quemMaior){
+				quemMaior = itResultado2->second;
+				guardarClasse = itResultado2->first;
+			}
+			cout << itResultado2->first << " " << itResultado2->second << endl;
+		}
+		cout << endl;
+		cout << " ==== " << guardarClasse << endl << endl;
+		cout << " ------------------- " << endl;
+	}
+}
 
 void split(string split, vector<string> *guardarValorSplit){
 	char del = '-';
