@@ -23,10 +23,14 @@ void etapaII(unordered_map<string, vector<int>> *mapa_d, unordered_map<string, v
 
 void etapaIII(unordered_map<string, vector<int>> *mapa_d, unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao, unordered_map<string, vector<int>> *classe);
 
-void permutacao(unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao,vector <string> vaux, int linha);
+void etapaIV(string key, unordered_map<string, vector<int>> *mapa_d, unordered_map<string, vector<int>> *classe, vector <int> *ResultadoFinal, unordered_map<string, int> *auxiliar, unordered_map<string, int> classeAux);
+
+void permutacao(unordered_map<int, vector<string>> *mapa_t_reduzido_permutacao, vector <string> vaux, int linha);
 
 void split(string split, vector<string> *guardarValorSplit);
 
 void intersecao(vector <int> intersecaoUm, vector <int> intersecaoDois, vector <int> *ResultadoFinal);
+
+void operacao(string coluna, unordered_map<string, vector<int>> *mapa_d, unordered_map<string, vector<int>> *classe, vector <int> *ResultadoFinal, unordered_map<string, int> *auxiliar, unordered_map<string, int> *valorCache);
 
 #endif
