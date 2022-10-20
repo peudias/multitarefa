@@ -67,7 +67,17 @@ A **classe** que apresentar um valor de **sobreposição maior** após processar
 
 <p align="justify">
 
-Elaborar um cache utilizando uma hash para armazenar o resultado das interseções já realizadas. Adote como chave as permutações e como valor o resultado das interseções. Feito isso, modifique o algoritmo para trabalhar da seguinte forma: Para cada nova permutação, buscar em cache se há resultado já processado. Em caso afirmativo, apenas teste as classes para o resultado. Caso contrário, faça toda a computação envolvida.
+Elaborar um `cache` **utilizando** uma `hash` para **armazenar** o **resultado** das **interseções** já realizadas.
+
+As `permutaçoes` *são* adotadas como `chave`.
+
+O `resultado das interseções` *são* adotados como `valor`.
+
+Para cada **nova permutação**, **buscar em cache** se há **resultado já processado**.
+
+Em **caso afirmativo**, apenas **teste as classes para o resultado**. 
+
+**Caso contrário**, faça toda a computação envolvida.
 
 </p>
 
